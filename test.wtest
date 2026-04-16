@@ -1,0 +1,59 @@
+import example.*
+
+
+describe "Test de evio" 
+{
+
+test "no esta pago y lo lleva neo a matrix"
+
+{
+        paquete.estaPago(false)
+        assert.notThat(paquete.puedeEntregar_En_(neo, laMatrix))
+}
+
+test "esta pago y lo lleva jean a la matrix"
+{
+        paquete.estaPago(true)
+        assert.that(paquete.puedeEntregar_En_(jeanGray, laMatrix))
+
+}
+
+test "esta pago y lo lleva sara(pesa 70) en un camion con 1 acoplado a Brooklyn"
+{
+
+
+        paquete.estaPago(true)
+
+        assert.equals(0, saraConnor.peso())
+
+        saraConnor.pesoPropio(70)
+        assert.equals(70, saraConnor.peso())
+        
+
+        saraConnor.cambiarVehiculo(camion)
+        assert.equals(570, saraConnor.peso())
+
+        
+        camion.cantidadAcoplados(1)
+        assert.equals(1070, saraConnor.peso())
+
+        assert.notThat(paquete.puedeEntregar_En_(saraConnor, brooklyn))
+        }
+
+test "la entrega anterior de sara pero con una moto"{
+
+        paquete.estaPago(true)
+
+
+        assert.equals(0, saraConnor.peso())
+
+        saraConnor.pesoPropio(70)
+        assert.equals(70, saraConnor.peso())
+
+
+        saraConnor.cambiarVehiculo(moto)
+        assert.equals(170, saraConnor.peso())
+
+        assert.that(paquete.puedeEntregar_En_(saraConnor, brooklyn))
+        }
+}
